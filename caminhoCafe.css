@@ -1,0 +1,841 @@
+/* ============================================================
+   caminhoCafe.css — Estilos exclusivos da página Caminho do Café
+   Inclui também os estilos do header/nav copiados de style_fixed.css
+   ============================================================ */
+
+/* ── Variáveis da página ─────────────────────────────────── */
+:root {
+    --bg: #0a0a08;
+    --bg-subtle: #111110;
+    --gold: #D4A84B;
+    --gold-dim: #8a6d2f;
+    --red: #C0392B;
+    --green: #2E7D32;
+    --cream: #F5E6C8;
+    --white: #FAFAF5;
+    --text-muted: #6b6b60;
+    --line-width: 3px;
+
+    /* Variáveis herdadas do style_fixed (usadas pelo .header/.logo) */
+    --yellow: #FFB905;
+    --border: #41403D;
+    --bg-card: #000000;
+    --text-white: #FFFFFF;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding-top: 30px;
+    /* igual ao index_fixed.html */
+}
+
+/* ============================================================
+   HEADER / NAV — copiado de style_fixed.css
+   ============================================================ */
+
+.page-container {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 16px 0;
+    margin: 0 auto;
+}
+
+.hero-card {
+    width: 100%;
+    max-width: 1415px;
+    min-height: auto;
+    background-color: var(--bg-card);
+    border-radius: 19px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 185, 5, 0.1);
+    box-shadow:
+        0 0 40px 0px rgba(57, 90, 8, 0.25),
+        0 0 80px 0px rgba(151, 14, 15, 0.12),
+        0 30px 70px -10px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 185, 5, 0.07);
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ── Header (barra de navegação) ─────────────────────────── */
+.header {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 59px;
+    position: relative;
+    z-index: 10;
+    background-color: var(--bg-card);
+}
+
+/* Logo Section */
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+}
+
+.logo-img {
+    height: 72px;
+    /* equivalente às duas linhas de texto anteriores */
+    width: auto;
+    /* proporcional — nunca distorce */
+    display: block;
+    object-fit: contain;
+}
+
+/* Navegação */
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #9F9F9F;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--yellow);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-white);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Ações do header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+.btn-pedir-agora {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 0 24px;
+    height: 53px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-pedir-agora::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease;
+}
+
+.btn-pedir-agora:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-pedir-agora:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    box-shadow: 0 0 15px rgba(255, 185, 5, 0.2);
+}
+
+.btn-cart {
+    width: 52px;
+    height: 52px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cart svg {
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.btn-cart:hover {
+    border-color: var(--yellow);
+    box-shadow: 0 0 15px rgba(255, 185, 5, 0.2);
+}
+
+.btn-cart:hover svg path {
+    fill: var(--yellow);
+    stroke: var(--yellow);
+}
+
+/* Linha decorativa colorida */
+.decorative-line {
+    display: flex;
+    height: 5px;
+    width: 100%;
+    z-index: 5;
+    position: relative;
+}
+
+.line-yellow {
+    height: 100%;
+    width: 62%;
+    background-color: var(--yellow);
+}
+
+.line-red {
+    height: 100%;
+    width: 19%;
+    background-color: #970E0F;
+}
+
+.line-green {
+    height: 100%;
+    width: 19%;
+    background-color: #395A08;
+}
+
+/* ── Responsivo do header ────────────────────────────────── */
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 20px;
+    }
+
+    .header {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        height: auto;
+        padding: 24px 30px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        border-bottom: 1px solid rgba(212, 168, 75, 0.2);
+        z-index: 10;
+        gap: 20px;
+    }
+
+    .nav-links.open {
+        max-height: 400px;
+        padding: 24px 0;
+        border-bottom: 2px solid var(--gold);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-card {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 56px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .btn-pedir-agora {
+        font-size: 14px;
+        height: 40px;
+        padding: 0 14px;
+    }
+
+    .btn-cart {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-cart svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 44px;
+        margin-bottom: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .header {
+        padding: 12px 16px;
+        text-align: center;
+    }
+
+    .page-hero {
+        padding: 1.5rem 16px 1rem;
+    }
+}
+
+/* ============================================================
+   WATERMARK
+   ============================================================ */
+.watermark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.03;
+}
+
+.watermark-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 6vw;
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    color: var(--cream);
+}
+
+.watermark-text:nth-child(even) {
+    transform: translateX(-15%);
+}
+
+/* ============================================================
+   PAGE HERO — título "o caminho do café"
+   ============================================================ */
+.page-hero {
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.5rem 75px 1.5rem;
+    /* 16px (container) + 59px (header) = 75px */
+}
+
+.page-hero .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-hero .subtitle::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+.page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--white);
+    max-width: 600px;
+}
+
+.page-hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+}
+
+.path-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Nó da timeline */
+.node {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: start;
+    min-height: 140px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.node.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Conteúdo à esquerda (ímpares) */
+.node:nth-child(odd) .node-content {
+    grid-column: 1;
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.node:nth-child(odd) .node-center {
+    grid-column: 2;
+}
+
+.node:nth-child(odd) .node-empty {
+    grid-column: 3;
+}
+
+/* Conteúdo à direita (pares) */
+.node:nth-child(even) .node-empty {
+    grid-column: 1;
+}
+
+.node:nth-child(even) .node-center {
+    grid-column: 2;
+}
+
+.node:nth-child(even) .node-content {
+    grid-column: 3;
+    text-align: left;
+    padding-left: 2rem;
+}
+
+/* Centro: círculo + linhas conectoras */
+.node-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 3;
+    padding-top: 0;
+}
+
+.circle-outer {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: var(--line-width) solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    position: relative;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.circle-outer:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 168, 75, 0.25);
+    transform: scale(1.1);
+}
+
+.circle-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.step-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Linhas conectoras verticais */
+.connector-line {
+    width: var(--line-width);
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+}
+
+.connector-line.top {
+    background: linear-gradient(to bottom, transparent, var(--gold-dim));
+}
+
+/* Linha de ramificação diagonal */
+.branch-line {
+    position: absolute;
+    height: var(--line-width);
+    background: var(--gold-dim);
+    transform-origin: left center;
+    z-index: 1;
+}
+
+/* Cards de conteúdo (texto) */
+.node-content {
+    position: relative;
+    padding-top: 52px;
+    /* alinha texto com o centro do ícone */
+}
+
+.node-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+.node:hover .node-content h3 {
+    color: var(--gold);
+}
+
+.node-content .time-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.node-content p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 320px;
+}
+
+.node:nth-child(odd) .node-content p {
+    margin-left: auto;
+}
+
+/* Detalhe expansível */
+.detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.detail.open {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.detail-inner {
+    padding-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(212, 168, 75, 0.15);
+    margin-top: 0.5rem;
+    line-height: 1.7;
+}
+
+/* Linha vertical central */
+.central-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: var(--line-width);
+    background: linear-gradient(to bottom,
+            var(--gold) 0%,
+            var(--gold-dim) 20%,
+            var(--gold-dim) 80%,
+            transparent 100%);
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* ── Pulse ao revelar ────────────────────────────────────── */
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 168, 75, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 168, 75, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 168, 75, 0);
+    }
+}
+
+.node.visible .circle-outer {
+    animation: pulse-ring 1.5s ease 0.3s 1;
+}
+
+/* ============================================================
+   SEÇÃO FINAL
+   ============================================================ */
+.final-section {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem 2rem 5rem;
+}
+
+.final-section .cup-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: steam 2s ease-in-out infinite;
+}
+
+@keyframes steam {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.final-section p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    font-style: italic;
+}
+
+.final-section p em {
+    color: var(--gold);
+}
+
+/* ============================================================
+   BARRA INFERIOR (stripe)
+   ============================================================ */
+.stripe-bar-bottom {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 3px;
+    display: flex;
+}
+
+.stripe-bar-bottom .green {
+    flex: 1;
+    background: var(--green);
+}
+
+.stripe-bar-bottom .red {
+    flex: 2;
+    background: var(--red);
+}
+
+.stripe-bar-bottom .gold {
+    flex: 3;
+    background: var(--gold);
+}
+
+/* ============================================================
+   MOBILE — timeline
+   ============================================================ */
+@media (max-width: 700px) {
+    .node {
+        grid-template-columns: 50px 1fr;
+        min-height: 110px;
+    }
+
+    .node:nth-child(odd) .node-content,
+    .node:nth-child(even) .node-content {
+        grid-column: 2;
+        text-align: left;
+        padding-left: 1.2rem;
+        padding-right: 0;
+        padding-top: 44px;
+    }
+
+    .node:nth-child(odd) .node-center,
+    .node:nth-child(even) .node-center {
+        grid-column: 1;
+    }
+
+    .node-empty {
+        display: none;
+    }
+
+    .central-line {
+        left: 25px;
+    }
+
+    .circle-outer {
+        width: 44px;
+        height: 44px;
+    }
+
+    .circle-icon {
+        font-size: 1.1rem;
+    }
+
+    .step-number {
+        width: 18px;
+        height: 18px;
+        font-size: 0.55rem;
+        top: -5px;
+        right: -5px;
+    }
+
+    .node-content h3 {
+        font-size: 1.05rem;
+    }
+
+    .node-content p {
+        max-width: 100%;
+    }
+
+    .node:nth-child(odd) .node-content p {
+        margin-left: 0;
+    }
+
+    .page-hero {
+        padding: 1.5rem 20px 1rem;
+    }
+}

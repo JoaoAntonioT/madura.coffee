@@ -147,9 +147,8 @@ body::after {
 /* Logo Section */
 .logo {
   display: flex;
-  flex-direction: column;
-  color: var(--yellow);
-  cursor: pointer;
+  align-items: center;
+  flex-shrink: 0;
   transform-origin: left center;
   transition: transform 0.3s ease;
 }
@@ -158,19 +157,19 @@ body::after {
   transform: scale(1.05);
 }
 
-.logo-madura {
-  font-family: 'Anton', sans-serif;
-  font-size: 36px;
-  line-height: 1;
-  letter-spacing: 0.5px;
+.logo a {
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 
-.logo-coffee {
-  font-family: 'Antonio', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 0.8;
-  letter-spacing: -0.03em;
+.logo-img {
+  height: 72px;
+  /* equivalente às duas linhas de texto anteriores */
+  width: auto;
+  /* proporcional — nunca distorce */
+  display: block;
+  object-fit: contain;
 }
 
 /* Navigation Links */
@@ -213,6 +212,21 @@ body::after {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:active {
+  transform: scale(0.9);
 }
 
 .btn-pedir-agora {
@@ -315,54 +329,23 @@ body::after {
   align-items: center;
 }
 
-/* Background Big Text Pattern */
-.bg-text-container {
+
+/* Logo outline background pattern */
+.bg-logo-pattern {
   position: absolute;
-  top: -80px;
-  left: -130px;
-  width: 250%;
-  display: flex;
-  flex-direction: column;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
   z-index: 0;
   pointer-events: none;
-}
-
-.bg-text-row {
-  display: flex;
-  white-space: nowrap;
-  gap: 20px;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 185, 5, 0.27);
-  opacity: 0.7;
-}
-
-.text-row-1 {
-  transform: translateX(0);
-}
-
-.text-row-2 {
-  transform: translateX(-150px);
-  margin-top: -30px;
-}
-
-.text-row-3 {
-  transform: translateX(-50px);
-  margin-top: -30px;
-}
-
-.bg-madura {
-  font-family: 'Anton', sans-serif;
-  font-size: 120px;
-  line-height: 181px;
-}
-
-.bg-coffee {
-  font-family: 'Antonio', sans-serif;
-  font-size: 120px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 181px;
-  /* Matching madura for neat alignment */
+  opacity: 0.15;
+  background-image: url('assets/logo-outline.svg?v=4');
+  background-repeat: repeat;
+  background-size: 260px auto;
+  background-position: 0 -40px;
+  transform: rotate(-6deg);
+  transform-origin: center center;
 }
 
 /* Foreground Text Content */
@@ -458,17 +441,37 @@ body::after {
 @media (max-width: 992px) {
   .header {
     height: auto;
-    padding: 30px;
-    flex-wrap: wrap;
+    padding: 24px 30px;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 30px;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: flex;
   }
 
   .nav-links {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1A0A00;
+    flex-direction: column;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    border-bottom: 1px solid rgba(255, 185, 5, 0.2);
+    z-index: 10;
+    gap: 20px;
+  }
+
+  .nav-links.open {
+    max-height: 400px;
+    padding: 24px 0;
+    border-bottom: 2px solid var(--gold);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   }
 
   .hero-card {
@@ -497,6 +500,10 @@ body::after {
 }
 
 @media (max-width: 768px) {
+  .logo {
+    height: 56px;
+  }
+
   .nav-links {
     gap: 15px;
   }
@@ -506,18 +513,23 @@ body::after {
   }
 
   .header-actions {
-    gap: 10px;
+    gap: 8px;
   }
 
   .btn-pedir-agora {
-    font-size: 16px;
-    height: 48px;
-    padding: 0 16px;
+    font-size: 14px;
+    height: 40px;
+    padding: 0 14px;
   }
 
   .btn-cart {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-cart svg {
+    width: 20px;
+    height: 20px;
   }
 
   .title {
@@ -525,8 +537,8 @@ body::after {
   }
 
   .subtitle {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    margin-bottom: 16px;
   }
 
   .bg-madura,
@@ -536,8 +548,8 @@ body::after {
   }
 
   .header {
-    padding: 20px;
-    gap: 20px;
+    padding: 16px 20px;
+    gap: 16px;
   }
 
   .hero-text {
@@ -548,6 +560,11 @@ body::after {
 }
 
 @media (max-width: 480px) {
+  .logo {
+    height: 44px;
+    margin-bottom: 0;
+  }
+
   .nav-links {
     flex-direction: column;
     align-items: center;
@@ -555,14 +572,7 @@ body::after {
   }
 
   .header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .logo {
-    align-items: center;
-    margin-bottom: 5px;
+    padding: 12px 16px;
   }
 
   .bg-text-container {
@@ -650,7 +660,7 @@ body::after {
 /* Section header */
 .sp-head {
   background: #F5EDD8;
-  padding: 28px 28px 15px;
+  padding: 28px 28px 10px;
   margin-bottom: 10px;
 }
 
@@ -842,7 +852,7 @@ body::after {
 
 /* Card body */
 .sp-card-body {
-  padding: 10px 12px 14px;
+  padding: 24px 28px 32px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -850,78 +860,79 @@ body::after {
 
 .sp-card-num {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 38px;
+  font-size: 72px;
   font-weight: 900;
-  color: rgba(255, 185, 5, 0.07);
-  line-height: 1;
-  margin-bottom: -8px;
+  color: rgba(255, 185, 5, 0.06);
+  line-height: 0.8;
+  margin-bottom: -16px;
 }
 
 .sp-card-name {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 19px;
+  font-size: 32px;
   font-weight: 900;
   color: var(--yellow);
   line-height: 1.1;
-  margin-bottom: 3px;
+  margin-bottom: 8px;
 }
 
 .sp-origin {
-  font-size: 9px;
-  color: rgba(255, 185, 5, 0.45);
-  margin-bottom: 7px;
+  font-size: 14px;
+  color: rgba(255, 185, 5, 0.55);
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-family: 'Inter', sans-serif;
 }
 
 .sp-origin::before {
   content: '';
-  width: 10px;
+  width: 14px;
   height: 1px;
   background: var(--yellow);
-  opacity: 0.3;
+  opacity: 0.35;
   display: inline-block;
 }
 
 .sp-divider {
   height: 1px;
-  background: rgba(255, 185, 5, 0.08);
-  margin-bottom: 8px;
+  background: rgba(255, 185, 5, 0.1);
+  margin-bottom: 16px;
 }
 
 .sp-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .sp-tag {
-  font-size: 8px;
-  color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 2px 7px;
-  border-radius: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 12px;
   font-family: 'Inter', sans-serif;
 }
 
 /* Scarcity indicator */
 .sp-scarcity {
-  font-size: 9px;
+  font-size: 13px;
   color: var(--red);
-  margin-bottom: 9px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
 .sp-scarcity-dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--red);
   flex-shrink: 0;
@@ -946,43 +957,48 @@ body::after {
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 185, 5, 0.1);
 }
 
 .sp-price-old {
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.2);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
   text-decoration: line-through;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
   font-family: 'Inter', sans-serif;
 }
 
 .sp-price {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 26px;
+  font-weight: 700;
   color: #fff;
   font-family: 'Inter', sans-serif;
+  line-height: 1;
 }
 
 .sp-price-gram {
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .sp-btn {
   background: var(--yellow);
   color: #000;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  transition: background 0.15s;
+  transition: all 0.2s;
 }
 
 .sp-btn:hover {
   background: #e0a500;
+  transform: translateY(-2px);
 }
 
 .sp-btn--outline {
@@ -999,18 +1015,18 @@ body::after {
 /* Freight banner */
 .sp-frete {
   background: #000;
-  margin: 14px 28px 0;
-  border-radius: 10px;
-  padding: 13px 18px;
+  margin: 24px 40px 0;
+  border-radius: 12px;
+  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .sp-frete-txt {
-  font-size: 12px;
+  font-size: 15px;
   color: #fff;
   font-family: 'Inter', sans-serif;
 }
@@ -1018,15 +1034,15 @@ body::after {
 .sp-frete-txt em {
   color: var(--yellow);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sp-frete-badge {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   background: #395A08;
   color: #F5EDD8;
-  padding: 5px 12px;
+  padding: 7px 16px;
   border-radius: 20px;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
@@ -1035,62 +1051,68 @@ body::after {
 /* Social proof strip */
 .sp-social-strip {
   background: #F5EDD8;
-  padding: 16px 28px 0;
+  padding: 32px 40px 0;
   display: flex;
-  gap: 24px;
+  gap: 40px;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .sp-ss-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
 }
 
 .sp-ss-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
+.sp-ss-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .sp-ss-top {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   color: #1A0A00;
   font-family: 'Inter', sans-serif;
 }
 
 .sp-ss-sub {
-  font-size: 9px;
+  font-size: 13px;
   color: #9C7A52;
-  margin-top: 1px;
+  margin-top: 2px;
   font-family: 'Inter', sans-serif;
 }
 
 /* Testimonial */
 .sp-depo-wrap {
   background: #F5EDD8;
-  padding: 14px 28px 0;
+  padding: 24px 40px 0;
 }
 
 .sp-depo {
   background: #FFFDF7;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 24px 32px;
   border: 1px solid rgba(107, 66, 38, 0.08);
   position: relative;
 }
 
 .sp-depo-quote {
   position: absolute;
-  top: 12px;
-  right: 14px;
+  top: -10px;
+  right: 24px;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 48px;
+  font-size: 100px;
   font-weight: 900;
   color: rgba(255, 185, 5, 0.08);
   line-height: 1;
@@ -1098,37 +1120,40 @@ body::after {
 
 .sp-depo-stars {
   display: flex;
-  gap: 2px;
-  margin-bottom: 8px;
+  gap: 4px;
+  margin-bottom: 12px;
 }
 
 .sp-ds {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   background: var(--yellow);
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .sp-depo-text {
-  font-size: 12px;
+  font-size: 16px;
   color: #3B1A08;
-  line-height: 1.7;
-  margin-bottom: 10px;
+  line-height: 1.6;
+  margin-bottom: 16px;
   font-style: italic;
   font-family: 'Inter', sans-serif;
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
 }
 
 .sp-depo-author {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: #6B4226;
   font-family: 'Inter', sans-serif;
 }
 
 .sp-depo-loc {
-  font-size: 9px;
+  font-size: 12px;
   color: #9C7A52;
-  margin-top: 1px;
+  margin-top: 2px;
   font-family: 'Inter', sans-serif;
 }
 
@@ -1199,13 +1224,13 @@ body::after {
   .sp-social-strip,
   .sp-depo-wrap,
   .sp-urgencia {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .sp-frete {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .sp-trust {
@@ -1217,6 +1242,34 @@ body::after {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+
+  .sp-card-num {
+    font-size: 56px;
+    margin-bottom: -12px;
+  }
+
+  .sp-card-name {
+    font-size: 26px;
+  }
+
+  .sp-price {
+    font-size: 22px;
+  }
+
+  .sp-ss-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .sp-depo-quote {
+    font-size: 64px;
+    top: 5px;
+    right: 16px;
+  }
+
+  .sp-card-body {
+    padding: 20px 24px 26px;
   }
 }
 
