@@ -15,7 +15,7 @@
     rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_fixed.css">
 </head>
 
 <body>
@@ -25,16 +25,15 @@
       <header class="header">
         <!-- Logo -->
         <div class="logo">
-          <a href="#" aria-label="Madura Coffee - página inicial">
-            <img src="assets/logo.svg" alt="Madura Coffee" class="logo-img">
-          </a>
+          <span class="logo-madura">MADURA</span>
+          <span class="logo-coffee">COFFEE</span>
         </div>
 
         <!-- Navigation -->
         <nav class="nav-links">
           <a href="#">cafés</a>
           <a href="#">produtos com café</a>
-          <a href="caminhoCafe.html">da fazenda à xícara</a>
+          <a href="#">nossa história</a>
           <a href="#">contato</a>
         </nav>
 
@@ -54,11 +53,6 @@
                 stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
-          <button class="menu-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
         </div>
       </header>
 
@@ -72,12 +66,27 @@
       <!-- Hero Main Content Area -->
       <div class="hero-content">
 
-        <!-- Logo outline background pattern -->
-        <div class="bg-logo-pattern" aria-hidden="true"></div>
+        <!-- Large Outline Background Text -->
+        <div class="bg-text-container" aria-hidden="true">
+          <div class="bg-text-row text-row-1">
+            <span class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span>
+          </div>
+          <div class="bg-text-row text-row-2">
+            <span class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span>
+          </div>
+          <div class="bg-text-row text-row-3">
+            <span class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span> <span class="bg-coffee">COFFEE</span> <span
+              class="bg-madura">MADURA</span>
+          </div>
+        </div>
 
         <!-- Foreground Text Content -->
         <div class="hero-text">
-
           <p class="subtitle">
             <span class="dot">•</span> TORREFADORA POPULAR CARIOCA
           </p>
@@ -87,13 +96,18 @@
           </h1>
         </div>
 
+      </div>
+
     </main>
   </div>
 
-
+  <!-- ==============================
+         SEÇÃO DE PRODUTOS
+         ============================== -->
   <div class="sp-page-wrap">
     <section class="sp-wrap" aria-label="Cafés da Semana — Madura Coffee">
 
+      <!-- TRUST BAR -->
       <div class="sp-trust" role="complementary">
         <div class="sp-trust-item">
           <div class="sp-tdot"></div>torra fresca toda semana
@@ -109,6 +123,7 @@
         </div>
       </div>
 
+      <!-- CABEÇALHO DA SEÇÃO -->
       <div class="sp-head">
         <div class="sp-head-top">
           <div>
@@ -122,6 +137,7 @@
         </div>
       </div>
 
+      <!-- FILTROS -->
       <div class="sp-filters" role="navigation" aria-label="Filtrar cafés por tipo">
         <button class="sp-fbtn sp-fbtn--on" aria-pressed="true">todos</button>
         <button class="sp-fbtn" aria-pressed="false">grão inteiro</button>
@@ -129,6 +145,7 @@
         <button class="sp-fbtn" aria-pressed="false">kits presente</button>
       </div>
 
+      <!-- GRADE DE PRODUTOS -->
       <div class="sp-grid-wrap">
         <div class="sp-grid" role="list" aria-label="Produtos Madura Coffee">
 
@@ -373,21 +390,6 @@
     });
   </script>
 
-  <!-- Rodapé colorido — faixa de marca -->
-  <footer style="width:100%;max-width:1440px;padding:0 16px 0;">
-    <div style="display:flex;height:5px;border-radius:0 0 8px 8px;overflow:hidden;">
-      <div style="flex:3;background:#FFB905;"></div>
-      <div style="flex:2;background:#970E0F;"></div>
-      <div style="flex:1;background:#395A08;"></div>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const navLinks = document.querySelector('.nav-links');
-      navLinks.classList.toggle('open');
-    }
-  </script>
 </body>
 
 </html>
